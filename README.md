@@ -53,6 +53,39 @@ Gains are set at the top of the file (`Kp`, `Ki`, `Kd`) along with the motor and
 | `start` | Enable the motors |
 | `stop` | Disable the motors and set speed to zero |
 
+## Test case
+
+The board and firmware were validated on a mobile robot built for the purpose. A vertical arm carrying a weight is mounted on the side of the chassis, so that driving disturbs the load and the controller has something real to stabilise.
+
+### Setup
+
+| Element | Configuration |
+|---|---|
+| Controller | Arduino Mega 2560 with the custom adapter shield |
+| Drive | LEGO motors through an L298N driver |
+| Orientation | Adafruit BNO055, pitch measurement |
+| Obstacle detection | LEGO ultrasonic sensor over I²C |
+| Manual override | LEGO touch sensor |
+| Surface reflectivity | LEGO light sensor, reserved for future use |
+| Power | 9 V battery for the motors, the Arduino's regulated 5 V rail for logic and sensors |
+| Environment | Indoors, on a level floor, to keep wind and surface variation out of the results |
+
+The robot was configured to drive forward until either an obstacle appeared or the touch sensor was pressed, adjusting motor speed continuously to keep the arm's oscillation down.
+
+### What was tested
+
+**Motor operation.** Forward and reverse commands were checked for direction and speed agreement between the two channels. Both motors turned in the commanded direction and held a constant matched speed.
+
+**Orientation sensing and control.** Stationary, the measured angle stayed within ±0.3° of the reference, confirming a stable baseline. While driving, the sensor tracked the arm's oscillation with little noise, including during acceleration. The PID controller engaged once oscillation passed ±10°, and the resulting damping was measurable.
+
+**I²C bus sharing.** The ultrasonic sensor and the BNO055 share one bus. Distance readings stayed stable throughout, and the motors were forced to stop when a reading dropped below 5 cm.
+
+**Touch input.** Transitions were clean with no false triggering, and every press reversed the drive direction.
+
+**Light sensor.** Differences in surface reflectivity and in ambient light were detected correctly. The readings are not used by the control logic, but the interface is proven and available.
+
+Every interface on the shield therefore performed within tolerance, which was the point of the exercise: the board, not the robot, is the deliverable. Pitch angle plotted against motor speed for a full run is included in the report.
+
 ## Repository contents
 
 | File / folder | What it is |
