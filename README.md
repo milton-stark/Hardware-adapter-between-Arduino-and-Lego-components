@@ -37,7 +37,7 @@ A 10 kΩ pull-up is required on the NXT light sensor line; the wiring table for 
 
 ## Demo firmware
 
-`Full_code.ino` is a working example that exercises every interface on the board at once. It runs on a two-wheeled LEGO chassis:
+`Full_code.ino` is a working example that exercises every interface on the board at once.
 
 1. **Calibrate.** On boot the sketch blocks until the BNO055 reports full gyro calibration, printing the calibration status each half second. It then captures the current pitch as the reference.
 2. **Wait for a command.** The robot stays still until `start` is typed into the serial monitor. `stop` disables the motors again.
