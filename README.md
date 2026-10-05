@@ -1,6 +1,6 @@
 # Arduino ↔ LEGO Hardware Adapter Shield
 
-A custom KiCad-designed shield that lets an Arduino Mega 2560 talk directly to LEGO MINDSTORMS NXT and EV3 sensors and motors, with demo firmware that exercises the board on a two-wheeled robot.
+A custom KiCad-designed shield that lets an Arduino Mega 2560 talk directly to LEGO MINDSTORMS NXT and EV3 sensors and motors, with demo firmware that exercises the board on a four-wheeled robot.
 
 Studienarbeit, M.Sc. Mechatronics, University of Siegen. Supervised by Prof. Dr.-Ing. habil. Michael Gerke and Dipl.-Ing. Peter Sahm. Presented November 2025.
 
